@@ -1,7 +1,7 @@
 package main;
-import Adder;
-import AdderImpl;
 
+
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -17,13 +17,13 @@ public class main {
 		catch(java.rmi.server.ExportException e){
 			LocateRegistry.getRegistry();
 		}
-		AdderImpl adder = new AdderImpl();
-		Adder stub = (Adder) UnicastRemoteObject.exportObject( adder, 0 );
+		RawData rawdata = new RawData();
+		InterfaceRawData stub = (InterfaceRawData) UnicastRemoteObject.exportObject(rawdata, 0 );
 		
 		RemoteServer.setLog( System.out );
 		
 		Registry registry = LocateRegistry.getRegistry();
-		registry.rebind( "Adder", stub );
-		System.out.println( "Adder angemeldet" );
+		registry.rebind( "InterfaceRawData", stub );
+		System.out.println( "InterfaceRawData angemeldet" );
 	}
 }
