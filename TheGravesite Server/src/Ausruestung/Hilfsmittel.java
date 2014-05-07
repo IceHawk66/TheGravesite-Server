@@ -1,5 +1,5 @@
 package Ausruestung;
 
-public class Hilfsmittel {
+public class Hilfsmittel extends Item{
 
 }
