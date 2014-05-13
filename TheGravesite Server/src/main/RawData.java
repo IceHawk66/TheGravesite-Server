@@ -2,6 +2,7 @@ package main;
 
 import java.rmi.Remote;
 
+import Ebene.Ebene;
 import Spielfiguren.Spieler;
 import main.main;
 
@@ -19,13 +20,8 @@ public class RawData implements InterfaceRawData, Remote{
 	}
 	
 	@Override 
-	public String[][] getMap(){
-		String[][] map = new String[10][2];
-		for(int i = 0; i < map.length; i++){
-			for(int j = 0; j < map[0].length; j++){
-				map[i][j] = "TestMap";
-			}
-		}
-		return map;
+	public Boolean[][] getMap(){
+		Ebene ebene = new Ebene(30,30);
+		return ebene.getEbene(30, 30);
 	}
 }

@@ -2,7 +2,11 @@ package Ebene;
 
 public class Ebene {
     
-    public static Boolean[][] Map(int hoehe, int breite) {
+    public Ebene(int hoehe, int breite) {
+    	getEbene(hoehe, breite);
+    }
+    
+    public Boolean[][] getEbene(int hoehe, int breite){
         Boolean[][] map = new Boolean[hoehe][breite];
         int zufall;
         for (int i = 0; i < map.length; i++){
@@ -54,12 +58,7 @@ public class Ebene {
         }
         
         
-        
-        
-        
-        
-        
-        
+       
         int endbreitelinkekante = startpunktoberkante;
         int startbreitelinkekante = endbreitelinkekante;
         int startpunktlinkekante = starthoeheoberkante;
@@ -201,15 +200,6 @@ public class Ebene {
                 }
             }
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
         return map;
     }
     

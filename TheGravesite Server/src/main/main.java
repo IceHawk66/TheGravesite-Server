@@ -7,14 +7,17 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.RemoteServer;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import Spielfiguren.Spieler;
 
 public class main {
 
+	private static LinkedList<Spieler> spieler;
+	
 	public static void main(String[] args) throws RemoteException {
+		
+		// Client Server Kommunikation initialisieren
 		try{
 			LocateRegistry.createRegistry( Registry.REGISTRY_PORT );
 		}
@@ -30,7 +33,13 @@ public class main {
 		registry.rebind( "InterfaceRawData", stub );
 		System.out.println( "InterfaceRawData angemeldet" );
 		
-		//List spieler<Spieler> = new LinkedList<Spieler>();
+		// LinkedList fuer Spieler initialisieren
+		// TODO Abfrage ergaenzen, ob schon vorhanden (Textfile auslesen), ansonsten neu erstellen bei erstem Start
 		
+		spieler = new LinkedList<Spieler>();
+	}
+	
+	public static void fuegeSpielerhinzu(Spieler s){
+		spieler.add(s);
 	}
 }

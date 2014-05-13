@@ -6,5 +6,5 @@ import java.rmi.RemoteException;
 public interface InterfaceRawData extends Remote{
 	
 	public String[][] getSpielerdaten() throws RemoteException;
-	public String[][] getMap() throws RemoteException;
+	public Boolean[][] getMap() throws RemoteException;
 }
