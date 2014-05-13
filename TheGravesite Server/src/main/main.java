@@ -7,6 +7,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.RemoteServer;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.LinkedList;
+import java.util.List;
+
+import Spielfiguren.Spieler;
 
 public class main {
 
@@ -25,5 +29,8 @@ public class main {
 		Registry registry = LocateRegistry.getRegistry();
 		registry.rebind( "InterfaceRawData", stub );
 		System.out.println( "InterfaceRawData angemeldet" );
+		
+		//List spieler<Spieler> = new LinkedList<Spieler>();
+		
 	}
 }
