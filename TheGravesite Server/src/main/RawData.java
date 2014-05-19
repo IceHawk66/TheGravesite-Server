@@ -20,8 +20,8 @@ public class RawData implements InterfaceRawData, Remote{
 	}
 	
 	@Override 
-	public Boolean[][] getMap(){
-		Ebene ebene = new Ebene(30,30);
-		return ebene.getEbene(30, 30);
+	public int[][] getMap(){
+		Ebene ebene = new Ebene(50,50);
+		return ebene.getEbene();
 	}
 }
