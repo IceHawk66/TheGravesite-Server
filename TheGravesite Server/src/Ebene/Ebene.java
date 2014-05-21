@@ -1,13 +1,7 @@
 package Ebene;
 
 public class Ebene {
-/*
-	public static void main(String[] args) {
-        int[][] map = Map(40, 80);
-        Darstellen(map);
-    }
-    
-	*/
+
 	int[][] map;
 	
 	public Ebene(int hoehe, int breite){

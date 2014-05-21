@@ -6,7 +6,7 @@ import Ebene.Ebene;
 import Spielfiguren.Spieler;
 import main.main;
 
-public class RawData implements InterfaceRawData, Remote{
+public class ServerToClientImpl implements ServerToClient, Remote{
 	
 	@Override 
 	public String[][] getSpielerdaten(){
@@ -21,7 +21,7 @@ public class RawData implements InterfaceRawData, Remote{
 	
 	@Override 
 	public int[][] getMap(){
-		Ebene ebene = new Ebene(50,50);
+		Ebene ebene = new Ebene(60,60);
 		return ebene.getEbene();
 	}
 }

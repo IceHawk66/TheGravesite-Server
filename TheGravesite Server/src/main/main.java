@@ -24,14 +24,14 @@ public class main {
 		catch(java.rmi.server.ExportException e){
 			LocateRegistry.getRegistry();
 		}
-		RawData rawdata = new RawData();
-		InterfaceRawData stub = (InterfaceRawData) UnicastRemoteObject.exportObject(rawdata, 0 );
+		ServerToClientImpl ServerToClientImpl = new ServerToClientImpl();
+		ServerToClient stub = (ServerToClient) UnicastRemoteObject.exportObject(ServerToClientImpl, 0 );
 		
 		RemoteServer.setLog( System.out );
 		
 		Registry registry = LocateRegistry.getRegistry();
-		registry.rebind( "InterfaceRawData", stub );
-		System.out.println( "InterfaceRawData angemeldet" );
+		registry.rebind( "ServerToClient", stub );
+		System.out.println( "ServerToClient angemeldet" );
 		
 		// LinkedList fuer Spieler initialisieren
 		// TODO Abfrage ergaenzen, ob schon vorhanden (Textfile auslesen), ansonsten neu erstellen bei erstem Start
