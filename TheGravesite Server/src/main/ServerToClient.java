@@ -7,4 +7,5 @@ public interface ServerToClient extends Remote{
 	
 	public String[][] getSpielerdaten() throws RemoteException;
 	public int[][] getMap() throws RemoteException;
+	public void addSpieler(String name) throws RemoteException;
 }

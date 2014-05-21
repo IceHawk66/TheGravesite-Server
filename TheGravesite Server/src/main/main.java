@@ -13,7 +13,8 @@ import Spielfiguren.Spieler;
 
 public class main {
 
-	private static LinkedList<Spieler> spieler;
+	private static LinkedList<Spieler> spielerliste;
+	
 	
 	public static void main(String[] args) throws RemoteException {
 		
@@ -36,10 +37,11 @@ public class main {
 		// LinkedList fuer Spieler initialisieren
 		// TODO Abfrage ergaenzen, ob schon vorhanden (Textfile auslesen), ansonsten neu erstellen bei erstem Start
 		
-		spieler = new LinkedList<Spieler>();
+		spielerliste = new LinkedList<Spieler>();
 	}
 	
-	public static void fuegeSpielerhinzu(Spieler s){
-		spieler.add(s);
+	public static void addSpieler(String name){
+		spielerliste.add(new Spieler(name));
 	}
+
 }

@@ -24,4 +24,9 @@ public class ServerToClientImpl implements ServerToClient, Remote{
 		Ebene ebene = new Ebene(60,60);
 		return ebene.getEbene();
 	}
+	
+	public void addSpieler(String name){
+		main.addSpieler(name);
+	}
+	
 }
