@@ -31,6 +31,7 @@ public class Rucksack {
 	 * @param item
 	 */
 	public void loescheItem(Item item){
+
 		// Item finden und löschen
 		for(int i = 0; i < rucksack.length; i++){
 			if(rucksack[i] == item){

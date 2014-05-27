@@ -1,12 +1,15 @@
 package main;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 import Ebene.Ebene;
 import Spielfiguren.Spieler;
 import main.main;
 
 public class ServerToClientImpl implements ServerToClient, Remote{
+	
+	private Ebene ebene = new Ebene();
 	
 	@Override 
 	public String[][] getSpielerdaten(){
@@ -20,13 +23,22 @@ public class ServerToClientImpl implements ServerToClient, Remote{
 	}
 	
 	@Override 
-	public int[][] getMap(){
-		Ebene ebene = new Ebene(60,60);
-		return ebene.getEbene();
+	public int[][] getAktiveMap(){
+		return ebene.getAktiveMap(10, 15);
 	}
 	
 	public void addSpieler(String name){
 		main.addSpieler(name);
 	}
 	
+	public void bewegeMap(int richtung){
+		switch(richtung){
+			case 1: ebene.Hoch();break;
+			case 2: ebene.Runter();break;
+			case 3: ebene.Links();break;
+			case 4: ebene.Rechts();break;
+		}
+	}
+	
+
 }
