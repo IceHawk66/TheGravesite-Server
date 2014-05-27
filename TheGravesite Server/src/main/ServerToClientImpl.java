@@ -33,10 +33,10 @@ public class ServerToClientImpl implements ServerToClient, Remote{
 	
 	public void bewegeMap(int richtung){
 		switch(richtung){
-			case 1: ebene.Hoch();break;
-			case 2: ebene.Runter();break;
-			case 3: ebene.Links();break;
-			case 4: ebene.Rechts();break;
+			case 1: ebene.hoch();break;
+			case 2: ebene.runter();break;
+			case 3: ebene.links();break;
+			case 4: ebene.rechts();break;
 		}
 	}
 	

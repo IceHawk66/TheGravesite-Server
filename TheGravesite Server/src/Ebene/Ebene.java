@@ -507,7 +507,7 @@ public class Ebene {
     }
     
     
-    public void Hoch(){
+    public void hoch(){
     	if (aktiveMap[posHoehe - 1][posBreite] == 2){
     		aktiveMap[posHoehe--][posBreite] = 2;
     		aktiveMap[posHoehe][posBreite] = 5;
@@ -564,7 +564,7 @@ public class Ebene {
     	}
     }
     
-    public void Runter(){
+    public void runter(){
     	if (aktiveMap[posHoehe + 1][posBreite] == 2){
     		aktiveMap[posHoehe++][posBreite] = 2;
     		aktiveMap[posHoehe][posBreite] = 5;
@@ -621,7 +621,7 @@ public class Ebene {
     	}
     }
     
-    public void Links(){
+    public void links(){
     	if (aktiveMap[posHoehe][posBreite - 1] == 2){
     		aktiveMap[posHoehe][posBreite--] = 2;
     		aktiveMap[posHoehe][posBreite] = 5;
@@ -678,7 +678,7 @@ public class Ebene {
     	}
     }
     
-    public void Rechts(){
+    public void rechts(){
     	if (aktiveMap[posHoehe][posBreite + 1] == 2){
     		aktiveMap[posHoehe][posBreite++] = 2;
     		aktiveMap[posHoehe][posBreite] = 5;
