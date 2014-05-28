@@ -40,5 +40,9 @@ public class ServerToClientImpl implements ServerToClient, Remote{
 		}
 	}
 	
+	public void erstelleNeueMap(){
+		ebene = new Ebene();
+	}
+	
 
 }
