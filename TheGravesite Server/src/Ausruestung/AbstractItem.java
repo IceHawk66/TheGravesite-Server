@@ -1,15 +1,13 @@
 package Ausruestung;
 
-public abstract class Item {
+public abstract class AbstractItem {
 	protected String name;
-
+	
 	public String getName() {
 		return name;
 	}
-
-	public void setName(String name) {
+	
+	public AbstractItem(String name){
 		this.name = name;
 	}
-	
-	
 }

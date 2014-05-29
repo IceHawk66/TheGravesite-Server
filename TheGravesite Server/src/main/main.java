@@ -29,7 +29,6 @@ public class main {
 		ServerToClient stub = (ServerToClient) UnicastRemoteObject.exportObject(ServerToClientImpl, 0 );
 		
 		RemoteServer.setLog( System.out );
-		
 		Registry registry = LocateRegistry.getRegistry();
 		registry.rebind( "ServerToClient", stub );
 		System.out.println( "ServerToClient angemeldet" );

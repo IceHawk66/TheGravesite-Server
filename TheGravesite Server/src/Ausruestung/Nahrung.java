@@ -1,6 +1,6 @@
 package Ausruestung;
 
-public class Nahrung {
+public class Nahrung extends ItemErsteller{
 	private int hp;
 
 	public int getHp() {
@@ -9,5 +9,10 @@ public class Nahrung {
 
 	public void setHp(int hp) {
 		this.hp = hp;
+	}
+
+	@Override
+	protected void erzeugeItem() {
+		items.add(new Wasserflasche("Soda"));
 	}
 }

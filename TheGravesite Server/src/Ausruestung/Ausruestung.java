@@ -1,6 +1,6 @@
 package Ausruestung;
 
-public class Ausruestung extends Item{
+public class Ausruestung extends ItemErsteller{
 	private int att;
 	private int def;
 	
@@ -8,16 +8,13 @@ public class Ausruestung extends Item{
 		return att;
 	}
 	
-	public void setAtt(int att) {
-		this.att = att;
-	}
-	
 	public int getDef() {
 		return def;
 	}
-	
-	public void setDef(int def) {
-		this.def = def;
+
+	@Override
+	protected void erzeugeItem() {
+		items.add(new Weste("Kettenweste"));
 	}
 	
 }
