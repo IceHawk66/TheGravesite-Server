@@ -22,9 +22,9 @@ public class ServerToClientImpl implements ServerToClient, Remote{
 		return spielerdaten;
 	}
 	
-	@Override 
-	public int[][] getAktiveMap(){
-		return ebene.getAktiveMap(10, 15);
+	@Override // TODO Parameter ergänzen
+	public int[][] getSichtfeld(){
+		return ebene.getSichtfeld(10, 15);
 	}
 	
 	public void addSpieler(String name){
@@ -42,5 +42,20 @@ public class ServerToClientImpl implements ServerToClient, Remote{
 	
 	public void erstelleNeueMap(){
 		ebene = new Ebene();
+	}
+
+	@Override
+	public int getSpielerX() throws RemoteException {
+		return ebene.getSpielerX();
+	}
+
+	@Override
+	public int getSpielerY() throws RemoteException {
+		return ebene.getSpielerY();
+	}
+
+	@Override
+	public int[][] getAktiveMap() throws RemoteException {
+		return ebene.getAktiveMap();
 	}
 }

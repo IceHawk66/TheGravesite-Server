@@ -735,7 +735,7 @@ public class Ebene {
     	}
     }
 	
-    public int[][] getAktiveMap(int hoeheAbstand, int breiteAbstand){
+    public int[][] getSichtfeld(int hoeheAbstand, int breiteAbstand){
     	int hoeheAnzeige = hoeheAbstand * 2 + 1;
     	int breiteAnzeige = breiteAbstand * 2 + 1;
     	
@@ -760,4 +760,16 @@ public class Ebene {
     	}
 		return anzeige;
 	}
+    
+    public int getSpielerX(){
+    	return posBreite;
+    }
+    
+    public int getSpielerY(){
+    	return posHoehe;
+    }
+    
+    public int[][] getAktiveMap(){
+    	return aktiveMap;
+    }
 }
