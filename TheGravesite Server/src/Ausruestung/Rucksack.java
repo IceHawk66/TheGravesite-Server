@@ -1,20 +1,20 @@
 package Ausruestung;
 
 public class Rucksack {
-	private Item[] rucksack;
+	private AbstractItem[] rucksack;
 	private boolean istVoll = false;
 	private int groesse;
 	
 	public Rucksack(int groesse){
 		this.setGroesse(groesse);
-		rucksack = new Item[getGroesse()];
+		rucksack = new AbstractItem[getGroesse()];
 	}
 	
 	/**
 	 * Fuegt ein Item an der ersten freien Stelle ein
 	 * @param item
 	 */
-	public void fuegeItemEin(Item item){
+	public void fuegeItemEin(AbstractItem item){
 		boolean found = false;
 		while(!found){
 			int i = 0;
@@ -30,7 +30,8 @@ public class Rucksack {
 	 * Loescht das uebergebene Item und entfernt die entstandene Luecke
 	 * @param item
 	 */
-	public void loescheItem(Item item){
+	public void loescheItem(AbstractItem item){
+
 		// Item finden und löschen
 		for(int i = 0; i < rucksack.length; i++){
 			if(rucksack[i] == item){
@@ -39,7 +40,7 @@ public class Rucksack {
 		}
 		
 		// Alle Items eins nach vorne bis Array keine Luecken mehr hat
-		Item[] hilfsarray = new Item[rucksack.length];
+		AbstractItem[] hilfsarray = new AbstractItem[rucksack.length];
 		int j = 0;
 		
 		// noch nicht ueberprueft

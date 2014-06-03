@@ -2,14 +2,40 @@ package Ebene;
 
 public class Ebene {
 
-	int[][] map;
+	private int[][] map0, map1, map2, map3, map4, map5, map6, map7, map8, map9, aktiveMap;
+	private int posHoehe, posBreite, aktiveMapInt, letzteTuer;
 	
-	public Ebene(int hoehe, int breite){
-		erstelleEbene(hoehe, breite);
-	}
+	public Ebene() {
+		final int mapbreite = 60;
+		final int maphoehe = 40;
+		letzteTuer = 2;
+        map0 = Map(maphoehe, mapbreite);
+        map1 = Map(maphoehe, mapbreite);
+        map2 = Map(maphoehe, mapbreite);
+        map3 = Map(maphoehe, mapbreite);
+        map4 = Map(maphoehe, mapbreite);
+        map5 = Map(maphoehe, mapbreite);
+        map6 = Map(maphoehe, mapbreite);
+        map7 = Map(maphoehe, mapbreite);
+        map8 = Map(maphoehe, mapbreite);
+        map9 = Map(maphoehe, mapbreite);
+        posHoehe = 0;
+        posBreite = 0;
+        aktiveMap = map0;
+        aktiveMapInt = 0;
+        for (int i = 0; i < aktiveMap.length; i++){
+        	for (int j = 0; j < aktiveMap[i].length; j++){
+            	if (aktiveMap[i][j] == 3){
+            		posHoehe = i - 1;
+            		posBreite = j;
+            		aktiveMap[posHoehe][posBreite] = 5;
+            	}
+        	}
+        }
+    }
 	
-    public void erstelleEbene(int hoehe, int breite) {
-        map = new int[hoehe][breite];
+    public int[][] Map(int hoehe, int breite) {
+        int[][] map = new int[hoehe][breite];
         int zufall;
         for (int i = 0; i < map.length; i++){												//die gesamte Karte wird anfangs als Wegpunkte definiert
             for (int j = 0; j < map[i].length; j++){
@@ -331,27 +357,419 @@ public class Ebene {
         map[endhoeheunterkante][endpunktunterkante] = 1;									//Das letzte Mauerst¸ck wird einzeln gesetzt
         
         
+        int tuer, positionEingang, positionAusgang, i;
+
+        do{
+        	tuer = (int)(Math.random() * 4);
+        }while (tuer == letzteTuer);
         
-        //return map;
-    }
-    
-    public int[][] getEbene(){
-    	return map;
-    }
-    
-    public static void Darstellen(int[][] map) {
-        for (int i = 0; i < map.length; i++){
-            for (int j = 0; j < map[i].length; j++){
-                if (map[i][j] == 2)
-                    System.out.print("'");
-                if (map[i][j] == 1)
-                    System.out.print("#");
-                if (map[i][j] == 0)
-                    System.out.print(" ");
-                System.out.print(" ");
+        switch(letzteTuer){ 
+        case 0: 
+            positionEingang = ((int)(Math.random() * (endpunktoberkante - startpunktoberkante - 30))) + 15;
+        	if ((positionEingang > endpunktoberkante) || (positionEingang < startpunktoberkante))
+        		positionEingang = startpunktoberkante + ((endpunktoberkante - startpunktoberkante) / 2);
+            i = 0;
+            while (map[i][positionEingang] != 1){
+            	i++;
             }
-            System.out.println("");
+            if (map[i+1][positionEingang] == 1){
+            	if (map[i][positionEingang-1] == 1)
+            		positionEingang--;
+            	else if (map[i][positionEingang+1] == 1)
+            		positionEingang++;
+            }
+            map[i][positionEingang] = 3;
+            break; 
+        case 1:
+        	positionEingang = ((int)(Math.random() * (endpunktrechtekante - startpunktrechtekante - 30))) + 15;
+        	if ((positionEingang > endpunktrechtekante) || (positionEingang < startpunktrechtekante))
+        		positionEingang = startpunktrechtekante + ((endpunktrechtekante - startpunktrechtekante) / 2);
+            i = map[positionEingang].length - 1;
+            while (map[positionEingang][i] != 1){
+            	i--;
+            }
+            if (map[positionEingang][i-1] == 1){
+            	if (map[positionEingang-1][i] == 1)
+            		positionEingang--;
+            	else if (map[positionEingang+1][i] == 1)
+            		positionEingang++;
+            }
+            map[positionEingang][i] = 3;
+            break; 
+        case 2: 
+        	positionEingang = ((int)(Math.random() * (endpunktunterkante - startpunktunterkante - 30))) + 15;
+        	if ((positionEingang > endpunktunterkante) || (positionEingang < startpunktunterkante))
+        		positionEingang = startpunktunterkante + ((endpunktunterkante - startpunktunterkante) / 2);
+            i = map.length - 1;
+            while (map[i][positionEingang] != 1){
+            	i--;
+            }
+            if (map[i-1][positionEingang] == 1){
+            	if (map[i][positionEingang-1] == 1)
+            		positionEingang--;
+            	else if (map[i][positionEingang+1] == 1)
+            		positionEingang++;
+            }
+            map[i][positionEingang] = 3; 
+            break; 
+        case 3: 
+        	positionEingang = ((int)(Math.random() * (endpunktlinkekante - startpunktlinkekante - 30))) + 15;
+        	if ((positionEingang > endpunktlinkekante) || (positionEingang < startpunktlinkekante))
+        		positionEingang = startpunktlinkekante + ((endpunktlinkekante - startpunktlinkekante) / 2);
+            i = 0;
+            while (map[positionEingang][i] != 1){
+            	i++;
+            }
+            if (map[positionEingang][i+1] == 1){
+            	if (map[positionEingang-1][i] == 1)
+            		positionEingang--;
+            	else if (map[positionEingang+1][i] == 1)
+            		positionEingang++;
+            }
+            map[positionEingang][i] = 3;
+            break; 
         }
+        
+        
+        switch(tuer){ 
+        case 0: 
+        	positionAusgang = ((int)(Math.random() * (endpunktoberkante - startpunktoberkante - 30))) + 15;
+        	if ((positionAusgang > endpunktoberkante) || (positionAusgang < startpunktoberkante))
+        		positionAusgang = startpunktoberkante + ((endpunktoberkante - startpunktoberkante) / 2);
+            i = 0;
+            while (map[i][positionAusgang] != 1){
+            	i++;
+            }
+            if (map[i+1][positionAusgang] == 1){
+            	if (map[i][positionAusgang-1] == 1)
+            		positionAusgang--;
+            	else if (map[i][positionAusgang+1] == 1)
+            		positionAusgang++;
+            }
+            map[i][positionAusgang] = 4;
+            break; 
+        case 1: 
+        	positionAusgang = ((int)(Math.random() * (endpunktrechtekante - startpunktrechtekante - 30))) + 15;
+        	if ((positionAusgang > endpunktrechtekante) || (positionAusgang < startpunktrechtekante))
+        		positionAusgang = startpunktrechtekante + ((endpunktrechtekante - startpunktrechtekante) / 2);
+            i = map[positionAusgang].length - 1;
+            while (map[positionAusgang][i] != 1){
+            	i--;
+            }
+            if (map[positionAusgang][i-1] == 1){
+            	if (map[positionAusgang-1][i] == 1)
+            		positionAusgang--;
+            	else if (map[positionAusgang+1][i] == 1)
+            		positionAusgang++;
+            }
+            map[positionAusgang][i] = 4;
+            break; 
+        case 2: 
+        	positionAusgang = ((int)(Math.random() * (endpunktunterkante - startpunktunterkante - 30))) + 15;
+        	if ((positionAusgang > endpunktunterkante) || (positionAusgang < startpunktunterkante))
+        		positionAusgang = startpunktunterkante + ((endpunktunterkante - startpunktunterkante) / 2);
+            i = map.length - 1;
+            while (map[i][positionAusgang] != 1){
+            	i--;
+            }
+            if (map[i-1][positionAusgang] == 1){
+            	if (map[i][positionAusgang-1] == 1)
+            		positionAusgang--;
+            	else if (map[i][positionAusgang+1] == 1)
+            		positionAusgang++;
+            }
+            map[i][positionAusgang] = 4; 
+            break; 
+        case 3: 
+        	positionAusgang = ((int)(Math.random() * (endpunktlinkekante - startpunktlinkekante - 30))) + 15;
+        	if ((positionAusgang > endpunktlinkekante) || (positionAusgang < startpunktlinkekante))
+        		positionAusgang = startpunktlinkekante + ((endpunktlinkekante - startpunktlinkekante) / 2);
+            i = 0;
+            while (map[positionAusgang][i] != 1){
+            	i++;
+            }
+            if (map[positionAusgang][i+1] == 1){
+            	if (map[positionAusgang-1][i] == 1)
+            		positionAusgang--;
+            	else if (map[positionAusgang+1][i] == 1)
+            		positionAusgang++;
+            }
+            map[positionAusgang][i] = 4;
+            break; 
+        }
+        
+        if (tuer > 1)
+        	letzteTuer = tuer - 2;
+        else if (tuer < 2)
+        	letzteTuer = tuer + 2;
+        
+        return map;
+    }
+    
+    
+    public void hoch(){
+    	if (aktiveMap[posHoehe - 1][posBreite] == 2){
+    		aktiveMap[posHoehe--][posBreite] = 2;
+    		aktiveMap[posHoehe][posBreite] = 5;
+    	}
+    	else if (aktiveMap[posHoehe - 1][posBreite] == 3){
+    		if (aktiveMapInt > 0){
+    			aktiveMapInt--;
+    			switch(aktiveMapInt){ 
+    	        case 0: aktiveMap = map0; break; 
+    	        case 1: aktiveMap = map1; break; 
+    	        case 2: aktiveMap = map2; break; 
+    	        case 3: aktiveMap = map3; break; 
+    	        case 4: aktiveMap = map4; break; 
+    	        case 5: aktiveMap = map5; break; 
+    	        case 6: aktiveMap = map6; break; 
+    	        case 7: aktiveMap = map7; break; 
+    	        case 8: aktiveMap = map8; break;
+    			}
+    			for (int i = 0; i < aktiveMap.length; i++){
+    	        	for (int j = 0; j < aktiveMap[i].length; j++){
+    	        		if (aktiveMap[i][j] == 4){
+    	            		posHoehe = i - 1;
+    	            		posBreite = j;
+    	            		aktiveMap[posHoehe][posBreite] = 5;
+    	            	}
+    	        	}
+    	        }
+    		}
+    	}
+    	else if (aktiveMap[posHoehe - 1][posBreite] == 4){
+    		if (aktiveMapInt < 9){
+    			aktiveMapInt++;
+    			switch(aktiveMapInt){ 
+    	        case 1: aktiveMap = map1; break; 
+    	        case 2: aktiveMap = map2; break; 
+    	        case 3: aktiveMap = map3; break; 
+    	        case 4: aktiveMap = map4; break; 
+    	        case 5: aktiveMap = map5; break; 
+    	        case 6: aktiveMap = map6; break; 
+    	        case 7: aktiveMap = map7; break; 
+    	        case 8: aktiveMap = map8; break;
+    	        case 9: aktiveMap = map9; break; 
+    			}
+    			for (int i = 0; i < aktiveMap.length; i++){
+    	        	for (int j = 0; j < aktiveMap[i].length; j++){
+    	        		if (aktiveMap[i][j] == 3){
+    	            		posHoehe = i - 1;
+    	            		posBreite = j;
+    	            		aktiveMap[posHoehe][posBreite] = 5;
+    	            	}
+    	        	}
+    	        }
+    		}
+    	}
+    }
+    
+    public void runter(){
+    	if (aktiveMap[posHoehe + 1][posBreite] == 2){
+    		aktiveMap[posHoehe++][posBreite] = 2;
+    		aktiveMap[posHoehe][posBreite] = 5;
+    	}
+    	else if (aktiveMap[posHoehe + 1][posBreite] == 3){
+    		if (aktiveMapInt > 0){
+    			aktiveMapInt--;
+    			switch(aktiveMapInt){ 
+    	        case 0: aktiveMap = map0; break; 
+    	        case 1: aktiveMap = map1; break; 
+    	        case 2: aktiveMap = map2; break; 
+    	        case 3: aktiveMap = map3; break; 
+    	        case 4: aktiveMap = map4; break; 
+    	        case 5: aktiveMap = map5; break; 
+    	        case 6: aktiveMap = map6; break; 
+    	        case 7: aktiveMap = map7; break; 
+    	        case 8: aktiveMap = map8; break;
+    			}
+    			for (int i = 0; i < aktiveMap.length; i++){
+    	        	for (int j = 0; j < aktiveMap[i].length; j++){
+    	        		if (aktiveMap[i][j] == 4){
+    	            		posHoehe = i + 1;
+    	            		posBreite = j;
+    	            		aktiveMap[posHoehe][posBreite] = 5;
+    	            	}
+    	        	}
+    	        }
+    		}
+    	}
+    	else if (aktiveMap[posHoehe + 1][posBreite] == 4){
+    		if (aktiveMapInt < 9){
+    			aktiveMapInt++;
+    			switch(aktiveMapInt){ 
+    	        case 1: aktiveMap = map1; break; 
+    	        case 2: aktiveMap = map2; break; 
+    	        case 3: aktiveMap = map3; break; 
+    	        case 4: aktiveMap = map4; break; 
+    	        case 5: aktiveMap = map5; break; 
+    	        case 6: aktiveMap = map6; break; 
+    	        case 7: aktiveMap = map7; break; 
+    	        case 8: aktiveMap = map8; break;
+    	        case 9: aktiveMap = map9; break; 
+    			}
+    			for (int i = 0; i < aktiveMap.length; i++){
+    	        	for (int j = 0; j < aktiveMap[i].length; j++){
+    	        		if (aktiveMap[i][j] == 3){
+    	            		posHoehe = i + 1;
+    	            		posBreite = j;
+    	            		aktiveMap[posHoehe][posBreite] = 5;
+    	            	}
+    	        	}
+    	        }
+    		}
+    	}
+    }
+    
+    public void links(){
+    	if (aktiveMap[posHoehe][posBreite - 1] == 2){
+    		aktiveMap[posHoehe][posBreite--] = 2;
+    		aktiveMap[posHoehe][posBreite] = 5;
+    	}
+    	else if (aktiveMap[posHoehe][posBreite - 1] == 3){
+    		if (aktiveMapInt > 0){
+    			aktiveMapInt--;
+    			switch(aktiveMapInt){ 
+    	        case 0: aktiveMap = map0; break; 
+    	        case 1: aktiveMap = map1; break; 
+    	        case 2: aktiveMap = map2; break; 
+    	        case 3: aktiveMap = map3; break; 
+    	        case 4: aktiveMap = map4; break; 
+    	        case 5: aktiveMap = map5; break; 
+    	        case 6: aktiveMap = map6; break; 
+    	        case 7: aktiveMap = map7; break; 
+    	        case 8: aktiveMap = map8; break;
+    			}
+    			for (int i = 0; i < aktiveMap.length; i++){
+    	        	for (int j = 0; j < aktiveMap[i].length; j++){
+    	        		if (aktiveMap[i][j] == 4){
+    	            		posHoehe = i;
+    	            		posBreite = j - 1;
+    	            		aktiveMap[posHoehe][posBreite] = 5;
+    	            	}
+    	        	}
+    	        }
+    		}
+    	}
+    	else if (aktiveMap[posHoehe][posBreite - 1] == 4){
+    		if (aktiveMapInt < 9){
+    			aktiveMapInt++;
+    			switch(aktiveMapInt){ 
+    	        case 1: aktiveMap = map1; break; 
+    	        case 2: aktiveMap = map2; break; 
+    	        case 3: aktiveMap = map3; break; 
+    	        case 4: aktiveMap = map4; break; 
+    	        case 5: aktiveMap = map5; break; 
+    	        case 6: aktiveMap = map6; break; 
+    	        case 7: aktiveMap = map7; break; 
+    	        case 8: aktiveMap = map8; break;
+    	        case 9: aktiveMap = map9; break; 
+    			}
+    			for (int i = 0; i < aktiveMap.length; i++){
+    	        	for (int j = 0; j < aktiveMap[i].length; j++){
+    	        		if (aktiveMap[i][j] == 3){
+    	            		posHoehe = i;
+    	            		posBreite = j - 1;
+    	            		aktiveMap[posHoehe][posBreite] = 5;
+    	            	}
+    	        	}
+    	        }
+    		}
+    	}
+    }
+    
+    public void rechts(){
+    	if (aktiveMap[posHoehe][posBreite + 1] == 2){
+    		aktiveMap[posHoehe][posBreite++] = 2;
+    		aktiveMap[posHoehe][posBreite] = 5;
+    	}
+    	else if (aktiveMap[posHoehe][posBreite + 1] == 3){
+    		if (aktiveMapInt > 0){
+    			aktiveMapInt--;
+    			switch(aktiveMapInt){ 
+    	        case 0: aktiveMap = map0; break; 
+    	        case 1: aktiveMap = map1; break; 
+    	        case 2: aktiveMap = map2; break; 
+    	        case 3: aktiveMap = map3; break; 
+    	        case 4: aktiveMap = map4; break; 
+    	        case 5: aktiveMap = map5; break; 
+    	        case 6: aktiveMap = map6; break; 
+    	        case 7: aktiveMap = map7; break; 
+    	        case 8: aktiveMap = map8; break;
+    			}
+    			for (int i = 0; i < aktiveMap.length; i++){
+    	        	for (int j = 0; j < aktiveMap[i].length; j++){
+    	        		if (aktiveMap[i][j] == 4){
+    	            		posHoehe = i;
+    	            		posBreite = j + 1;
+    	            		aktiveMap[posHoehe][posBreite] = 5;
+    	            	}
+    	        	}
+    	        }
+    		}
+    	}
+    	else if (aktiveMap[posHoehe][posBreite + 1] == 4){
+    		if (aktiveMapInt < 9){
+    			aktiveMapInt++;
+    			switch(aktiveMapInt){ 
+    	        case 1: aktiveMap = map1; break; 
+    	        case 2: aktiveMap = map2; break; 
+    	        case 3: aktiveMap = map3; break; 
+    	        case 4: aktiveMap = map4; break; 
+    	        case 5: aktiveMap = map5; break; 
+    	        case 6: aktiveMap = map6; break; 
+    	        case 7: aktiveMap = map7; break; 
+    	        case 8: aktiveMap = map8; break;
+    	        case 9: aktiveMap = map9; break; 
+    			}
+    			for (int i = 0; i < aktiveMap.length; i++){
+    	        	for (int j = 0; j < aktiveMap[i].length; j++){
+    	        		if (aktiveMap[i][j] == 3){
+    	            		posHoehe = i;
+    	            		posBreite = j + 1;
+    	            		aktiveMap[posHoehe][posBreite] = 5;
+    	            	}
+    	        	}
+    	        }
+    		}
+    	}
     }
 	
+    public int[][] getSichtfeld(int hoeheAbstand, int breiteAbstand){
+    	int hoeheAnzeige = hoeheAbstand * 2 + 1;
+    	int breiteAnzeige = breiteAbstand * 2 + 1;
+    	
+    	int[][] anzeige = new int[hoeheAnzeige][breiteAnzeige];
+    	
+    	for (int i = 0; i < anzeige.length; i++){ 
+    		for (int j = 0; j < anzeige[i].length; j++){
+    			anzeige[i][j] = 0;
+    		}
+    	}
+    	int k = 0;
+    	int l = 0;
+    	for (int i = (posHoehe - hoeheAbstand); i < (posHoehe + hoeheAbstand + 1); i++){ 
+    		for (int j = (posBreite - breiteAbstand); j < (posBreite + breiteAbstand + 1); j++){
+    			if ((i >= 0) && (i < aktiveMap.length) && (j >= 0) && (j < aktiveMap[i].length)){
+    				anzeige[k][l] = aktiveMap[i][j];
+    			}
+    			l++;
+    		}
+    		l = 0;
+    		k++;
+    	}
+		return anzeige;
+	}
+    
+    public int getSpielerX(){
+    	return posBreite;
+    }
+    
+    public int getSpielerY(){
+    	return posHoehe;
+    }
+    
+    public int[][] getAktiveMap(){
+    	return aktiveMap;
+    }
 }
