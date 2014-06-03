@@ -39,7 +39,7 @@ public class ServerToClientImpl implements ServerToClient, Remote{
 			case 4: ebene.rechts();break;
 		}
 	}
-	
+	//.
 	public void erstelleNeueMap(){
 		ebene = new Ebene();
 	}

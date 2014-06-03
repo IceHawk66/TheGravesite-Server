@@ -28,7 +28,6 @@ public class Datenhaltung {
 		    
 		    Speicherstaende speicherstaende = new Speicherstaende();
 		    speicherstaende.addSpeicherstand(main.ServerToClientImpl.getAlleEbenen());
-		    //
 		    //Auftrag an den EntityManager das Objekt fhDortmund zu persistieren
 		    em.persist(speicherstaende);
 		    //commiten der Transaktion
