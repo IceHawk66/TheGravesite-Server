@@ -23,7 +23,7 @@ public class Datenhaltung {
 	  public Datenhaltung() {
 			factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		    EntityManager em = factory.createEntityManager();
-		    //Beginn der Transaktion zur Speicherung der Hochschule
+		    //Beginn der Transaktion zur Speicherung der Hochschule...
 		    em.getTransaction().begin();
 		    
 		    Speicherstaende speicherstaende = new Speicherstaende();

@@ -43,10 +43,10 @@ public class Ebene {
             }
         }
 
-        int endhoeheoberkante = (int)(Math.random() * 10);									//aktuelle Hˆhe der Oberkante (ver‰ndert sich und gibt am Ende die Hˆhe des letzten Mauerst¸cks an)
-        int starthoeheoberkante = endhoeheoberkante;										//die Hˆhe des ersten Mauerst¸cks wird gespeichert
-        int startpunktoberkante = (int)(Math.random() * 10);								//der Punkt des ersten Mauerst¸cks wird berechnet
-        int endpunktoberkante = breite - (int)(Math.random() * 10) - 1;						//der Punkt des letzten Mauerst¸cks wird berechnet
+        int endhoeheoberkante = (int)(Math.random() * 10);									//Aktuelle Hˆhe der Oberkante (ver‰ndert sich und gibt am Ende die Hˆhe des letzten Mauerst¸cks an)
+        int starthoeheoberkante = endhoeheoberkante;										//Die Hˆhe des ersten Mauerst¸cks wird gespeichert
+        int startpunktoberkante = (int)(Math.random() * 10);								//Der Punkt des ersten Mauerst¸cks wird berechnet
+        int endpunktoberkante = breite - (int)(Math.random() * 10) - 1;						//Der Punkt des letzten Mauerst¸cks wird berechnet
         
         for (int i = 0; i <= starthoeheoberkante; i++){										//die obere linke Ecke wird als leer definiert
         	for (int j = 0; j <= startpunktoberkante; j++){
