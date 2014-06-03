@@ -58,4 +58,8 @@ public class ServerToClientImpl implements ServerToClient, Remote{
 	public int[][] getAktiveMap() throws RemoteException {
 		return ebene.getAktiveMap();
 	}
+	
+	public Ebene getAlleEbenen(){
+		return ebene;
+	}
 }
